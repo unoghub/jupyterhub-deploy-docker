@@ -15,7 +15,7 @@ services:
     image: jupyterhub
     container_name: jupyterhub
     networks:
-      - jupyterhub-network
+      - dokploy-network
     volumes:
       # The JupyterHub configuration file
       - "./jupyterhub_config.py:/srv/jupyterhub/jupyterhub_config.py:ro"
@@ -30,7 +30,7 @@ services:
       # This username will be a JupyterHub admin
       JUPYTERHUB_ADMIN: admin
       # All containers will join this network
-      DOCKER_NETWORK_NAME: jupyterhub-network
+      DOCKER_NETWORK_NAME: dokploy-network
       # JupyterHub will spawn this Notebook image for users
       DOCKER_NOTEBOOK_IMAGE: quay.io/jupyter/base-notebook:latest
       # Notebook directory inside user image
@@ -38,7 +38,3 @@ services:
 
 volumes:
   jupyterhub-data:
-
-networks:
-  jupyterhub-network:
-    name: jupyterhub-network
